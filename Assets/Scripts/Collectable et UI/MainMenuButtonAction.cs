@@ -13,6 +13,21 @@ public class MainMenuButtonAction : MonoBehaviour
         PanelAOuvrir.SetActive(true);
     }
 
+    public void ActiverBoutonNiveau(int numBouton)
+    {
+        Button button; 
+        if (numBouton == 0)
+        {
+            button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
+        }
+        else
+        {
+            button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
+
+        }
+        button.interactable = true;
+    }
+
     /// <summary>
     /// Permet de ferme aussi le panel actuel
     /// </summary>

@@ -7,9 +7,27 @@ public class FinDeNiveau : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            Scene scene = SceneManager.GetActiveScene();
+            string nomScene = scene.name;
+            MainMenuButtonAction mainMenuButtonAction = new MainMenuButtonAction();
+
             Debug.Log("Félicitation, le niveau est terminé.");
             GameManager.Instance.SaveData();
-            SceneManager.LoadScene("MainMenu");
+
+            if (nomScene == "Level1")
+            {
+                mainMenuButtonAction.ActiverBoutonNiveau(0);
+                SceneManager.LoadScene("Level2");
+            }
+            else if (nomScene == "Level2")
+            {
+                mainMenuButtonAction.ActiverBoutonNiveau(1);
+                SceneManager.LoadScene("Level3");
+            }
+            else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 }
