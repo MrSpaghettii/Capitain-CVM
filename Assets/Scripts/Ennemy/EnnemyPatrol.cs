@@ -33,6 +33,8 @@ public class EnnemyPatrol : MonoBehaviour
     private SpriteRenderer _sr;
 
     private float _y = -1;
+    private float _degrees = 0.0f;
+    private bool rotationFlip = false;
     
     // Start is called before the first frame update
     void Start()
@@ -50,19 +52,37 @@ public class EnnemyPatrol : MonoBehaviour
 
         //Pour augmanter et duminuer l'axe des y
         Vector3 vole = transform.position;
+        
         if (vole.y > 1)
         {
-            _y = -0.05f;
+            _y = -0.01f;
         }
         else if (vole.y < -1)
         {
-            _y = 0.05f;
+            _y = 0.01f;
         }
         vole.y += _y;
+
+        if (rotationFlip == true) {
+            _degrees += 1;
+            transform.eulerAngles = new Vector3(0,0,_degrees);
+            if (_degrees > 360) 
+            { 
+                rotationFlip = false;
+                _degrees = 0;
+                transform.eulerAngles = new Vector3(0, 0, _degrees);
+            }
+        }
         transform.position = vole;
 
+
         if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
-        else if (direction.x > 0 && _sr.flipX) _sr.flipX = false;
+        else if (direction.x > 0 && _sr.flipX) {
+            _sr.flipX = false;
+            rotationFlip = true;
+
+        } 
+        
 
         if (Vector3.Distance(this.transform.position, _cible.position) < _distanceSeuil)
         {
