@@ -32,6 +32,8 @@ public class EnnemyPatrol : MonoBehaviour
     /// </summary>
     private SpriteRenderer _sr;
 
+    private float _y = -1;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,19 @@ public class EnnemyPatrol : MonoBehaviour
         Vector3 direction = _cible.position - this.transform.position;
         this.transform.Translate(direction.normalized * _vitesse * Time.deltaTime, Space.World);
 
+        //Pour augmanter et duminuer l'axe des y
+        Vector3 vole = transform.position;
+        if (vole.y > 1)
+        {
+            _y = -0.05f;
+        }
+        else if (vole.y < -1)
+        {
+            _y = 0.05f;
+        }
+        vole.y += _y;
+        transform.position = vole;
+
         if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
         else if (direction.x > 0 && _sr.flipX) _sr.flipX = false;
 
@@ -53,6 +68,7 @@ public class EnnemyPatrol : MonoBehaviour
         {
             _indexPoint = (++_indexPoint) % _points.Length;
             _cible = _points[_indexPoint];
+
         }
     }
 
