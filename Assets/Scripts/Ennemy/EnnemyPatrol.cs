@@ -34,7 +34,7 @@ public class EnnemyPatrol : MonoBehaviour
 
     private float _y = -1;
     private float _degrees = 0.0f;
-    private bool rotationFlip = false;
+    private bool _rotationFlip = false;
     
     // Start is called before the first frame update
     void Start()
@@ -63,12 +63,12 @@ public class EnnemyPatrol : MonoBehaviour
         }
         vole.y += _y;
 
-        if (rotationFlip == true) {
+        if (_rotationFlip == true) {
             _degrees += 1;
             transform.eulerAngles = new Vector3(0,0,_degrees);
             if (_degrees > 360) 
             { 
-                rotationFlip = false;
+                _rotationFlip = false;
                 _degrees = 0;
                 transform.eulerAngles = new Vector3(0, 0, _degrees);
             }
@@ -79,7 +79,7 @@ public class EnnemyPatrol : MonoBehaviour
         if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
         else if (direction.x > 0 && _sr.flipX) {
             _sr.flipX = false;
-            rotationFlip = true;
+            _rotationFlip = true;
 
         } 
         

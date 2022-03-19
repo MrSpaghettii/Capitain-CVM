@@ -64,10 +64,17 @@ public class PlayerData
     /// </summary>
     public System.Action Gameover;
 
+    private int _level;
+    private List<string> _collectables;
+
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
+
+    private int _levelTermine = 1;
+    public int LevelTermine { get { return _levelTermine; } set { _levelTermine = value; } }
+
 
     public PlayerData()
     {
@@ -81,12 +88,14 @@ public class PlayerData
         this.UIPerteVie = null;
         this.Gameover = null;
         this._chestOpenList = new List<string>();
+        this._level = LevelTermine;
+        this._collectables = new List<string>();
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
         System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null)
+        System.Action gameOver = null, List<string> ChestList = null, List<string> collectables = null,  int level = 1)
     {
         this._vie = vie;
         this._energie = energie;
@@ -97,7 +106,11 @@ public class PlayerData
         this.UIPerteEnergie += uiPerteEnergie;
         this.UIPerteVie += uiPerteVie;
         this.Gameover += gameOver;
+        this._level = level;
+        this._collectables = collectables;
         this._chestOpenList = new List<string>();
+        if (collectables != null)
+            this._collectables = ChestList;
         if (ChestList != null)
             this._chestOpenList = ChestList;
     }
@@ -167,6 +180,39 @@ public class PlayerData
         this._score += gain;
     }
 
+    /// <summary>
+    /// update le menu de collectables
+    /// </summary>
+    public void addCollectables(string nomCollectable)
+    {
+        switch (nomCollectable)
+        {
+            case "gun1":
+                break;
+
+            case "gun2":
+                break;
+
+            case "theThing":
+                break;
+
+
+        }
+    }
+
+    public static string WriteJson(PlayerData data)
+    {
+        PlayerData playerdata = new PlayerData(data._vie, data._energie, data._score, data._volumeGeneral,
+            data._volumeMusique, data._volumeEffet,data.UIPerteVie, data.UIPerteEnergie, data.Gameover,
+            data._chestOpenList, data._collectables, data._level);
+
+        return JsonUtility.ToJson(playerdata);
+    }
+    public static PlayerData ReadJson(string json)
+    {
+        PlayerData playerdata = JsonUtility.FromJson<PlayerData>(json);
+        return new PlayerData(); 
+    }
     /// <summary>
     /// Ajoute le nom du coffre à la liste
     /// </summary>

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MainMenuButtonAction : MonoBehaviour
 {
@@ -13,19 +14,20 @@ public class MainMenuButtonAction : MonoBehaviour
         PanelAOuvrir.SetActive(true);
     }
 
-    public void ActiverBoutonNiveau()
+    public void ActiverBoutonNiveau(PlayerData data)
     {
-        //Button button; 
-        //if (numBouton == 0)
-        //{
-        //    button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
-        //}
-        //else
-        //{
-        //    button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
+        Button button = null;
+        if (data.LevelTermine == 2)
+        {
+            button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
+        }
+        else if (data.LevelTermine == 3)
+        {
+            button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
+        }
 
-        //}
-        //button.interactable = true;
+        if (button != null)
+            button.interactable = true;
     }
 
     /// <summary>
