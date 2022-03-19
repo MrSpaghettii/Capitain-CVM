@@ -9,7 +9,7 @@ public class EnnemyPatrol : MonoBehaviour
     /// Vitesse de l'objet en patrouille
     /// </summary>
     [SerializeField]
-    private float _vitesse = 3f;
+    private float _vitesse = 8f;
     /// <summary>
     /// Liste de GO représentant les points à atteindre
     /// </summary>

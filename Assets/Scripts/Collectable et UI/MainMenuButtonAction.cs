@@ -13,19 +13,19 @@ public class MainMenuButtonAction : MonoBehaviour
         PanelAOuvrir.SetActive(true);
     }
 
-    public void ActiverBoutonNiveau(int numBouton)
+    public void ActiverBoutonNiveau()
     {
-        Button button; 
-        if (numBouton == 0)
-        {
-            button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
-        }
-        else
-        {
-            button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
+        //Button button; 
+        //if (numBouton == 0)
+        //{
+        //    button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
+        //}
+        //else
+        //{
+        //    button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
 
-        }
-        button.interactable = true;
+        //}
+        //button.interactable = true;
     }
 
     /// <summary>

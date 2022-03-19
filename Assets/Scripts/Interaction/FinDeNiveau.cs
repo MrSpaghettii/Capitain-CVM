@@ -16,12 +16,12 @@ public class FinDeNiveau : MonoBehaviour
 
             if (nomScene == "Level1")
             {
-                mainMenuButtonAction.ActiverBoutonNiveau(0);
+                //mainMenuButtonAction.ActiverBoutonNiveau(0);
                 SceneManager.LoadScene("Level2");
             }
             else if (nomScene == "Level2")
             {
-                mainMenuButtonAction.ActiverBoutonNiveau(1);
+               
                 SceneManager.LoadScene("Level3");
             }
             else
