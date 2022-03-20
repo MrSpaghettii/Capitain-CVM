@@ -200,19 +200,6 @@ public class PlayerData
         }
     }
 
-    public static string WriteJson(PlayerData data)
-    {
-        PlayerData playerdata = new PlayerData(data._vie, data._energie, data._score, data._volumeGeneral,
-            data._volumeMusique, data._volumeEffet,data.UIPerteVie, data.UIPerteEnergie, data.Gameover,
-            data._chestOpenList, data._collectables, data._level);
-
-        return JsonUtility.ToJson(playerdata);
-    }
-    public static PlayerData ReadJson(string json)
-    {
-        PlayerData playerdata = JsonUtility.FromJson<PlayerData>(json);
-        return new PlayerData(); 
-    }
     /// <summary>
     /// Ajoute le nom du coffre à la liste
     /// </summary>
