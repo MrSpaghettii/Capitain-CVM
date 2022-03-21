@@ -65,15 +65,25 @@ public class PlayerData
     public System.Action Gameover;
 
     private int _level;
-    private List<string> _collectables;
+    private int _collectable1;
+    private int _collectable2;
+    private int _collectable3;
+    private int _collectable4;
+    private int _collectable5;
 
     public int Energie { get { return this._energie; } }
     public int Vie { get { return this._vie; } }
     public int Score { get { return this._score; } }
     public string[] ListeCoffreOuvert { get { return this._chestOpenList.ToArray(); } }
 
-    private int _levelTermine = 1;
-    public int LevelTermine { get { return _levelTermine; } set { _levelTermine = value; } }
+   
+    public int LevelTermine { get { return this._level; }}
+
+    public int Collectable1 { get { return this._collectable1; } }
+    public int Collectable2 { get { return this._collectable2; } }
+    public int Collectable3 { get { return this._collectable3; } }
+    public int Collectable4 { get { return this._collectable4; } }
+    public int Collectable5 { get { return this._collectable5; } }
 
 
     public PlayerData()
@@ -88,14 +98,19 @@ public class PlayerData
         this.UIPerteVie = null;
         this.Gameover = null;
         this._chestOpenList = new List<string>();
-        this._level = LevelTermine;
-        this._collectables = new List<string>();
+        this._level = 0;
+        this._collectable1 = 0;
+        this._collectable2 = 0;
+        this._collectable3 = 0;
+        this._collectable4 = 0;
+        this._collectable5 = 0;
     }
 
     public PlayerData(int vie = 1, int energie = 2, int score = 0,
         float volumeGeneral = 0, float volumeMusique = 0, float volumeEffet = 0,
-        System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,
-        System.Action gameOver = null, List<string> ChestList = null, List<string> collectables = null,  int level = 1)
+         //System.Action uiPerteEnergie = null, System.Action uiPerteVie = null,System.Action gameOver = null,
+         List<string> ChestList = null,  int level = 0, int collectable1 = 0, int collectable2 = 0,
+         int collectable3 = 0, int collectable4 = 0, int collectable5 = 0)
     {
         this._vie = vie;
         this._energie = energie;
@@ -103,14 +118,19 @@ public class PlayerData
         this._volumeGeneral = volumeGeneral;
         this._volumeMusique = volumeMusique;
         this._volumeEffet = volumeEffet;
-        this.UIPerteEnergie += uiPerteEnergie;
-        this.UIPerteVie += uiPerteVie;
-        this.Gameover += gameOver;
-        this._level = level;
-        this._collectables = collectables;
+        //this.UIPerteEnergie += uiPerteEnergie;
+        //this.UIPerteVie += uiPerteVie;
+        //this.Gameover += gameOver;
+
         this._chestOpenList = new List<string>();
-        if (collectables != null)
-            this._collectables = ChestList;
+        //if (collectables != null)
+        //    this._collectables = ChestList;
+        this._level = level;
+        this._collectable1 = collectable1;
+        this._collectable2 = collectable2;
+        this._collectable3 = collectable3;
+        this._collectable4 = collectable4;
+        this._collectable5 = collectable5;
         if (ChestList != null)
             this._chestOpenList = ChestList;
     }
@@ -180,24 +200,44 @@ public class PlayerData
         this._score += gain;
     }
 
+    public void LevelCompleted()
+    {
+        this._level += 1;
+        Debug.Log("LEVEeeeeeeeL"+ _level);
+    }
+
     /// <summary>
     /// update le menu de collectables
     /// </summary>
     public void addCollectables(string nomCollectable)
     {
+       
         switch (nomCollectable)
         {
+            case "ConventionCollective":
+                this._collectable1 += 1;
+                break;
+
+            case "CarteMembre":
+                this._collectable2 += 1;
+                break;
+
             case "gun1":
+                this._collectable3 +=1;
                 break;
 
             case "gun2":
+                this._collectable4 += 1;
                 break;
 
             case "theThing":
+                this._collectable5 += 1;
                 break;
 
 
         }
+        Debug.Log("COLLLECCTABLE2 " + _collectable2);
+        
     }
 
     /// <summary>

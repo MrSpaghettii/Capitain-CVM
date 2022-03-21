@@ -20,6 +20,8 @@ public class EnergyUpgrade : MonoBehaviour
                 .PlayClipAtPoint(_clip, this.transform.position);
             GameManager.Instance
                 .PlayerData.IncrEnergie(this._regainEnergie);
+            GameManager.Instance
+                .PlayerData.addCollectables(this.name);
             GameObject.Destroy(this.gameObject);
         }
     }

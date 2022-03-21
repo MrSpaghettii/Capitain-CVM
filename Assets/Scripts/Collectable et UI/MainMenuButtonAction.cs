@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
 using System;
 
@@ -12,22 +12,6 @@ public class MainMenuButtonAction : MonoBehaviour
     public void AfficherPanel(GameObject PanelAOuvrir)
     {
         PanelAOuvrir.SetActive(true);
-    }
-
-    public void ActiverBoutonNiveau(PlayerData data)
-    {
-        Button button = null;
-        if (data.LevelTermine == 2)
-        {
-            button = GameObject.Find("ButtonNiv2").GetComponent<Button>();
-        }
-        else if (data.LevelTermine == 3)
-        {
-            button = GameObject.Find("ButtonNiv3").GetComponent<Button>();
-        }
-
-        if (button != null)
-            button.interactable = true;
     }
 
     /// <summary>

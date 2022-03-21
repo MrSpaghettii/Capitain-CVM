@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
+    
     private void LoadPlayerData()
     {
         string path = Path.Combine(Application.persistentDataPath, "savedata_encrypt.json");
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour
         SaveData();
     }
 
+    
     public void ChangerScene(string nomScene)
     {
         _audioManager.StopAudio(0.3f);
@@ -134,7 +136,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangementScene(Scene current, Scene next)
     {
-        GameObject.Find("Fondu").SetActive(false);
+        //GameObject.Find("Fondu").SetActive(false);
+
     }
 
     #endregion

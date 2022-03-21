@@ -18,6 +18,15 @@ public static class PlayerDataJson
         json += tab + "\"vie\":" + data.Vie + "," + newline;
         json += tab + "\"energie\":" + data.Energie + "," + newline;
         json += tab + "\"score\":" + data.Score + "," + newline;
+        json += tab + "\"level\":" + data.LevelTermine + "," + newline;
+
+        json += tab + "\"collectable1\":" + data.Collectable1 + "," + newline;
+        json += tab + "\"collectable2\":" + data.Collectable2 + "," + newline;
+        json += tab + "\"collectable3\":" + data.Collectable3 + "," + newline;
+        json += tab + "\"collectable4\":" + data.Collectable4 + "," + newline;
+        json += tab + "\"collectable5\":" + data.Collectable5 + "," + newline;
+
+
         json += tab + "\"volumeGeneral\":" + data.VolumeGeneral.ToString().Replace(',', '.') + "," + newline; 
         json += tab + "\"volumeMusique\":" + data.VolumeMusique.ToString().Replace(',', '.') + "," + newline; 
         json += tab + "\"volumeEffet\":" + data.VolumeEffet.ToString().Replace(',', '.') + "," + newline; 
@@ -58,9 +67,13 @@ public static class PlayerDataJson
             throw new JSONFormatExpcetion();
         json = json.Replace("\t", string.Empty);
 
-        int vie = 0, energie = 0, score = 0;
+        int vie = 0, energie = 0, score = 0, level = 0,
+            collectable1 = 0,collectable2 = 0,collectable3 = 0,
+            collectable4 = 0,collectable5 = 0;
+
         float vlmGeneral = 0, vlmMusique = 0, vlmEffet = 0;
         List<string> chests = new List<string>();
+       
         string[] lignes = json.Split('\n');
         
         for(int i = 1; i < lignes.Length || lignes[i] != "}"; i++)
@@ -82,6 +95,27 @@ public static class PlayerDataJson
                 case "\"score\"":
                     score = int.Parse(parametre[1].Replace(",", string.Empty));
                     break;
+                case "\"level\"":
+                    level = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+
+                case "\"collectable1\"":
+                    collectable1 = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+                case "\"collectable2\"":
+                    collectable2 = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+                case "\"collectable3\"":
+                    collectable3 = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+                case "\"collectable4\"":
+                    collectable4 = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+                case "\"collectable5\"":
+                    collectable5 = int.Parse(parametre[1].Replace(",", string.Empty));
+                    break;
+
+
                 case "\"volumeGeneral\"":
                     vlmGeneral = float.Parse(parametre[1].Replace(",", string.Empty).Replace('.', ','));
                     break;
@@ -106,7 +140,8 @@ public static class PlayerDataJson
             }
         }
 
-        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ChestList: chests);
+        return new PlayerData(vie, energie, score, vlmGeneral, vlmMusique, vlmEffet, ChestList: chests,
+            level, collectable1, collectable2, collectable3, collectable4, collectable5);
     }
 }
 

@@ -12,8 +12,7 @@ public class FinDeNiveau : MonoBehaviour
             string prochaineScene;
             Debug.Log("Félicitation, le niveau est terminé.");
             GameManager.Instance.SaveData();
-
-            PlayerData data = new PlayerData();
+           
 
             if (nomSceneActuel == "Level1")
             {
@@ -21,15 +20,14 @@ public class FinDeNiveau : MonoBehaviour
             }
             else if (nomSceneActuel == "Level2")
             {
-                data.LevelTermine = 2;
                 prochaineScene = "Level3";
             }
             else
             {
-                data.LevelTermine = 3;
                 prochaineScene ="MainMenu";
             }
 
+            GameManager.Instance.PlayerData.LevelCompleted();
             SceneManager.LoadScene(prochaineScene);
         }
     }

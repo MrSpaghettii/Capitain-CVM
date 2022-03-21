@@ -81,7 +81,7 @@ public class EnnemyPatrol : MonoBehaviour
         }
 
 
-        if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
+            if (direction.x < 0 && !_sr.flipX) _sr.flipX = true;
         else if (direction.x > 0 && _sr.flipX) {
             _sr.flipX = false;
             _rotationFlip = true;
